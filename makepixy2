@@ -5,17 +5,20 @@
 ######################################################################
 
 ifndef PIXY_HOME
-PIXY_HOME := "/home/pi/pixy"
+PIXY_HOME := "/home/pi/pixy2"
 endif
 PIXY_INCLUDES = -I$(PIXY_HOME)/src/common/inc \
-   -I$(PIXY_HOME)/src/host/libpixyusb/include \
+   -I$(PIXY_HOME)/src/host/libpixyusb2/include \
+   -I$(PIXY_HOME)/src/host/arduino/libraries/Pixy2 \
    -I/usr/include/libusb-1.0
 
 # Libraries that need to be linked: libpixyusb libusb-2.0 libusb boost-thread boost-system boost-chrono
 # -L defines library search paths; -l defines library name (minus "lib" prefix)
-PIXY_LIBS = -L$(PIXY_HOME)/build -lpixyusb \
-   -L/usr/lib/arm-linux-gnueabihf -lboost_thread -lboost_system \
-   -lboost_chrono -lpthread -lusb-1.0
+PIXY_LIBS = -L$(PIXY_HOME)/build/libpixyusb2 \
+   -L/usr/lib/arm-linux-gnueabihf \
+#   -L/usr/lib/arm-linux-gnueabihf -lboost_thread -lboost_system \
+   -lpixy2 -lpthread -lusb-1.0
+#   -lboost_chrono -lpthread -lusb-1.0
 #CXX_DEFINES = -D__LIBPIXY_VERSION__=\"0.4\"
 
 # If undefined in the environment default NDDSHOME to install dir
@@ -34,7 +37,8 @@ LINKER = arm-linux-gnueabihf-g++
 endif
 LINKER_FLAGS = -static-libgcc
 SYSLIBS = -ldl -lnsl -lm -lpthread -lrt
-DEFINES = -fpic -DRTI_UNIX -DRTI_LINUX -march=armv7-a -mcpu=cortex-a9 -mlong-calls -D__LIBPIXY_VERSION__=\"0.4\"
+DEFINES = -fpic -DRTI_UNIX -DRTI_LINUX -march=armv7-a -mcpu=cortex-a9 -mlong-calls
+#DEFINES = -fpic -DRTI_UNIX -DRTI_LINUX -march=armv7-a -mcpu=cortex-a9 -mlong-calls -D__LIBPIXY_VERSION__=\"0.4\"
 
 INCLUDES = -I. -I$(NDDSHOME)/include -I$(NDDSHOME)/include/ndds
 
