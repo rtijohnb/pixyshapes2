@@ -15,8 +15,8 @@ PIXY_INCLUDES = -I$(PIXY_HOME)/src/common/inc \
 # Libraries that need to be linked: libpixyusb libusb-2.0 libusb boost-thread boost-system boost-chrono
 # -L defines library search paths; -l defines library name (minus "lib" prefix)
 PIXY_LIBS = -L$(PIXY_HOME)/build/libpixyusb2 \
-   -L/usr/lib/arm-linux-gnueabihf \
-#   -L/usr/lib/arm-linux-gnueabihf -lboost_thread -lboost_system \
+#   -L/usr/lib/arm-linux-gnueabihf \
+   -L/usr/lib/arm-linux-gnueabihf -lboost_thread -lboost_system -lboost_chrono\
    -lpixy2 -lpthread -lusb-1.0
 #   -lboost_chrono -lpthread -lusb-1.0
 #CXX_DEFINES = -D__LIBPIXY_VERSION__=\"0.4\"
