@@ -466,40 +466,44 @@ extern "C" int publisher_main(int domainId, int sample_count)
     /* Main loop */
     while (run_flag) {
 
-	pixy.ccc.getBlocks(false, 0x7F, 255);
-        for (count = 0; count < pixy.ccc.numBlocks; count++)
+        // Read a frame from the camera
+        pixy.ccc.getBlocks(false, 0x7F, 255);
+
+        // For each detected block, update the appropriate Circle
+        for (int block = 0; block < pixy.ccc.numBlocks; block++)
         {
-            sigNum = pixy.ccc.blocks[count].m_signature - 1;
+            sigNum = pixy.ccc.blocks[block].m_signature - 1;
             if (sigEnabled[sigNum] == true)
             {
                 // Scale camera pixels to Shapes demo pixels
-                int x = (pixy.ccc.blocks[count].m_x * SHAPE_X_MAX) / PIXY_MAX_X;
-                int y = (pixy.ccc.blocks[count].m_y * SHAPE_Y_MAX) / PIXY_MAX_Y;
+                int x = (pixy.ccc.blocks[block].m_x * SHAPE_X_MAX) / PIXY_MAX_X;
+                int y = (pixy.ccc.blocks[block].m_y * SHAPE_Y_MAX) / PIXY_MAX_Y;
                 // Update this ShapeType instance
                 trackedObject[sigNum]->x = x;
                 trackedObject[sigNum]->y = y;
-                trackedObject[sigNum]->shapesize = pixy.ccc.blocks[count].m_width;
+                trackedObject[sigNum]->shapesize = pixy.ccc.blocks[block].m_width;
                 objectChanged[sigNum] = true;
             }
 
-            if (got_matched_subscriber) // Only write data if someone is listening
-            {
-                // Send DDS updates for any signatures that have new data
-                for (count = 0; count < NUM_SIGS; count++)
-                {
-                    if(sigEnabled[count] && objectChanged[count])
-                    {
-                        retcode = ShapeTypeExtended_writer->write(*(trackedObject[count]), objectHandle[count]);
-                        if (retcode != DDS_RETCODE_OK)
-                        {
-                            printf("write error %d\n", retcode);
-                        }
-                    }
-                    objectChanged[count] = false;
-                }
-                ShapeTypeExtended_writer->flush();
-            } // if (got_matched_subscriber)
         } // for loop
+
+        if (got_matched_subscriber) // Only write data if someone is listening
+        {
+            // Send DDS updates for any signatures that have new data
+            for (sigNum = 0; sigNum < NUM_SIGS; sigNum++)
+            {
+                if(sigEnabled[sigNum] && objectChanged[sigNum])
+                {
+                    retcode = ShapeTypeExtended_writer->write(*(trackedObject[sigNum]), objectHandle[sigNum]);
+                    if (retcode != DDS_RETCODE_OK)
+                    {
+                        printf("write error %d\n", retcode);
+                    }
+                }
+                objectChanged[sigNum] = false;
+            }
+            ShapeTypeExtended_writer->flush();
+        } // if (got_matched_subscriber)
 
         // Now check for inbound servo control data
 #if 0
