@@ -506,13 +506,14 @@ extern "C" int publisher_main(int domainId, int sample_count)
         } // if (got_matched_subscriber)
 
         // Now check for inbound servo control data
-#if 0
+#if TRACKING_ENABLED
         retcode = servo_reader->take_next_sample(servo_control, servo_info);
         if ((retcode == DDS_RETCODE_OK) && (servo_info.valid_data == RTI_TRUE))
         {
             // Update the servo positions on the pixy
-            pixy_rcs_set_position(0, servo_control.pan);
-            pixy_rcs_set_position(1, servo_control.tilt);
+            //pixy_rcs_set_position(0, servo_control.pan);
+            //pixy_rcs_set_position(1, servo_control.tilt);
+            pixy.setServos(servo_control.pan, servo_control.tilt);
         }
 #endif
 
