@@ -553,8 +553,8 @@ int main(int argc, char *argv[])
         printf("pixy.init(): %d\n ", return_value);
         return(return_value);
     }
-//    pixy.version->print();
-//    pixy.changeProg("color_connected_components");
+    pixy.version->print();
+    pixy.changeProg("color_connected_components");
 
     if (argc > 1)
     {
