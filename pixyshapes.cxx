@@ -466,7 +466,7 @@ extern "C" int publisher_main(int domainId, int sample_count)
     /* Main loop */
     while (run_flag) {
 
-	pixy.ccc.getBlocks();
+	pixy.ccc.getBlocks(false, 0x7F, 255);
         for (count = 0; count < pixy.ccc.numBlocks; count++)
         {
             sigNum = pixy.ccc.blocks[count].m_signature - 1;
