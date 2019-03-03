@@ -21,10 +21,11 @@ PIXY_LIBS = -L$(PIXY_HOME)/build/libpixyusb2 -lpixy2 \
 
 # If undefined in the environment default NDDSHOME to install dir
 ifndef NDDSHOME
-NDDSHOME := "/Applications/rti_connext_dds-5.3.0"
+NDDSHOME := "/Applications/rti_connext_dds-5.3.1"
 endif
 
-TARGET_ARCH = armv7aLinux3.12gcc4.9.3cortex-a9
+#TARGET_ARCH = armv7aLinux3.12gcc4.9.3cortex-a9
+TARGET_ARCH = armv6vfphLinux3.xgcc4.7.2
 
 ifndef COMPILER
 COMPILER = arm-linux-gnueabihf-g++
@@ -35,7 +36,7 @@ LINKER = arm-linux-gnueabihf-g++
 endif
 LINKER_FLAGS = -static-libgcc
 SYSLIBS = -ldl -lnsl -lm -lpthread -lrt
-DEFINES = -fpic -DRTI_UNIX -DRTI_LINUX -march=armv7-a -mcpu=cortex-a9 -mlong-calls -D__LIBPIXY_VERSION__=\"0.4\"
+DEFINES = -fpic -DRTI_UNIX -DRTI_LINUX -march=armv6 -mlong-calls -D__LIBPIXY_VERSION__=\"0.4\"
 #DEFINES = -fpic -DRTI_UNIX -DRTI_LINUX -march=armv7-a -mcpu=cortex-a9 -mlong-calls -D__LIBPIXY_VERSION__=\"0.4\"
 
 INCLUDES = -I. -I$(NDDSHOME)/include -I$(NDDSHOME)/include/ndds

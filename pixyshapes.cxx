@@ -536,7 +536,7 @@ extern "C" int publisher_main(int domainId, int sample_count)
 //-------------------------------------------------------------------
 int main(int argc, char *argv[])
 {
-    int domainId = 0;
+    int domainId = 53;
     int sample_count = 0; /* infinite loop */
     int return_value;
 
