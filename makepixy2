@@ -42,7 +42,10 @@ DEFINES = -fpic -DRTI_UNIX -DRTI_LINUX -march=armv6 -mlong-calls -D__LIBPIXY_VER
 INCLUDES = -I. -I$(NDDSHOME)/include -I$(NDDSHOME)/include/ndds
 
 LIBS = -L$(NDDSHOME)/lib/$(TARGET_ARCH) \
-        -lnddscpp -lnddsc -lnddscore $(SYSLIBS)
+       -L$(RTI_OPENSSLHOME) \
+       -lnddssecurity \
+       -lnddscpp -lnddsc -lnddscore $(SYSLIBS) \
+       -lssl -lcrypto
 
 CDRSOURCES    = ShapeType.idl
 COMMONSOURCES = ShapeTypeSupport.cxx ShapeTypePlugin.cxx ShapeType.cxx \

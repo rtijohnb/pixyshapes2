@@ -1,0 +1,136 @@
+MIME-Version: 1.0
+Content-Type: multipart/signed; protocol="application/x-pkcs7-signature"; micalg="sha-256"; boundary="----EB1D9A031D6C00153840C50092772CF3"
+
+This is an S/MIME signed message
+
+------EB1D9A031D6C00153840C50092772CF3
+Content-Type: text/plain
+
+<?xml version="1.0" encoding="UTF-8"?>
+<dds xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="/Applications/rti_connext_dds-5.3.1/resource/schema/dds_security_governance.xsd">
+    <domain_access_rules>
+        <domain_rule>
+            <domains>
+                <id_range>
+                    <min>50</min>
+                    <max>250</max>
+                </id_range>
+            </domains>
+            <allow_unauthenticated_participants>false</allow_unauthenticated_participants>
+            <enable_join_access_control>true</enable_join_access_control>
+            <discovery_protection_kind>ENCRYPT</discovery_protection_kind>
+            <liveliness_protection_kind>ENCRYPT</liveliness_protection_kind>
+            <rtps_protection_kind>SIGN</rtps_protection_kind>
+            <topic_access_rules>
+                <topic_rule>
+                    <topic_expression>rti/*</topic_expression>
+                    <enable_discovery_protection>false</enable_discovery_protection>
+                    <enable_liveliness_protection>false</enable_liveliness_protection>
+                    <enable_read_access_control>false</enable_read_access_control>
+                    <enable_write_access_control>false</enable_write_access_control>
+                    <metadata_protection_kind>NONE</metadata_protection_kind>
+                    <data_protection_kind>NONE</data_protection_kind>
+                </topic_rule>
+                <topic_rule>
+                    <topic_expression>Square*</topic_expression>
+                    <enable_discovery_protection>false</enable_discovery_protection>
+                    <enable_read_access_control>false</enable_read_access_control>
+                    <enable_write_access_control>false</enable_write_access_control>
+                    <metadata_protection_kind>NONE</metadata_protection_kind>
+                    <data_protection_kind>NONE</data_protection_kind>
+                </topic_rule>
+                <topic_rule>
+                    <topic_expression>pixy*</topic_expression>
+                    <enable_discovery_protection>false</enable_discovery_protection>
+                    <enable_read_access_control>false</enable_read_access_control>
+                    <enable_write_access_control>false</enable_write_access_control>
+                    <metadata_protection_kind>NONE</metadata_protection_kind>
+                    <data_protection_kind>NONE</data_protection_kind>
+                </topic_rule>
+                <topic_rule>
+                    <topic_expression>Circle*</topic_expression>
+                    <enable_discovery_protection>true</enable_discovery_protection>
+                    <enable_read_access_control>true</enable_read_access_control>
+                    <enable_write_access_control>true</enable_write_access_control>
+                    <metadata_protection_kind>NONE</metadata_protection_kind>
+                    <data_protection_kind>NONE</data_protection_kind>
+                </topic_rule>
+                <topic_rule>
+                    <topic_expression>*</topic_expression>
+                    <enable_discovery_protection>true</enable_discovery_protection>
+                    <enable_read_access_control>true</enable_read_access_control>
+                    <enable_write_access_control>true</enable_write_access_control>
+                    <metadata_protection_kind>ENCRYPT</metadata_protection_kind>
+                    <data_protection_kind>ENCRYPT</data_protection_kind>
+                </topic_rule>
+            </topic_access_rules>
+
+            <domains>
+                <id_range>
+                    <min>0</min>
+                    <max>49</max>
+                </id_range>
+            </domains>
+            <allow_unauthenticated_participants>true</allow_unauthenticated_participants>
+            <enable_join_access_control>false</enable_join_access_control>
+            <discovery_protection_kind>NONE</discovery_protection_kind>
+            <liveliness_protection_kind>NONE</liveliness_protection_kind>
+            <rtps_protection_kind>NONE</rtps_protection_kind>
+            <topic_access_rules>
+                <topic_rule>
+                    <topic_expression>*</topic_expression>
+                    <enable_discovery_protection>false</enable_discovery_protection>
+                    <enable_read_access_control>false</enable_read_access_control>
+                    <enable_write_access_control>false</enable_write_access_control>
+                    <metadata_protection_kind>NONE</metadata_protection_kind>
+                    <data_protection_kind>NONE</data_protection_kind>
+                </topic_rule>
+            </topic_access_rules>
+        </domain_rule>
+    </domain_access_rules>
+</dds>
+
+------EB1D9A031D6C00153840C50092772CF3
+Content-Type: application/x-pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+
+MIIGbgYJKoZIhvcNAQcCoIIGXzCCBlsCAQExDzANBglghkgBZQMEAgEFADALBgkq
+hkiG9w0BBwGgggOMMIIDiDCCAnACCQDGGDVp5GT9IDANBgkqhkiG9w0BAQsFADCB
+hTELMAkGA1UEBhMCVVMxCzAJBgNVBAgMAk5DMQ0wCwYDVQQHDARDYXJ5MR4wHAYD
+VQQKDBVSZWFsIFRpbWUgSW5ub3ZhdGlvbnMxFjAUBgNVBAMMDU5DIENlcnQgV29y
+bGQxIjAgBgkqhkiG9w0BCQEWE3Blcm1pc3Npb25zQHJ0aS5jb20wHhcNMTkwMzAx
+MDAxNTUxWhcNMjkwMjI2MDAxNTUxWjCBhTELMAkGA1UEBhMCVVMxCzAJBgNVBAgM
+Ak5DMQ0wCwYDVQQHDARDYXJ5MR4wHAYDVQQKDBVSZWFsIFRpbWUgSW5ub3ZhdGlv
+bnMxFjAUBgNVBAMMDU5DIENlcnQgV29ybGQxIjAgBgkqhkiG9w0BCQEWE3Blcm1p
+c3Npb25zQHJ0aS5jb20wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDI
+t+ad2710306P+1Oxw0FWdOjrda6NrPyQVeKYnlOFKiJFHmnHyZmLxOlWUel7Tj3C
+45nuQlSHl4wocYDPig0Vp+Necpa7ug8HDN0o6m8vvNQyYqAhhpPgxG5Purh9jt6Y
+t+OlMixCz3VAmMb8+2Zu+TOhd9xtdNAcXxwgatIc7yAe64hs9tSLJ337iBuSJC0c
+R3jp1hrfm2ZWaO04BqKqH5ejH8pW1YZBvc4TMrmOky40oJ/yuSY07Nvc5GxE/E4m
+ysf8817kfJ2VuABGmSg2SvP7xgpNnjrTWvLCoEAmlJS+/pFyrvC0wECvzv4rfXkR
+P/PrrrnNB6PfDojfS/vPAgMBAAEwDQYJKoZIhvcNAQELBQADggEBAH5cUkyjZXOj
+JqPW5QQnVqGucdFx0uPWNnWNcj2s9OyWFRypXFMK4skN4GFWhpnFkOtrtc35uypZ
+S37daO9ocW4cnwyoTdo2uec/ylPvzdRV1V6Kw2GOJnMt9anc1x13aKFpzwKBg6Y5
+i6XMxRc0HXwvqX4dUosaNVpDlAyO1E/hxqL7/EZI7bljJtE8J/f83wHMDoMrFrVu
+DAGcNz/heIiVdB5NAqR/WIUabaIlUesvk2hHBWBH+lgVpI4HeNtWlX+uXN1+2W7A
+b6o2WFLhI0JdplnFqJpGh9jRhwUU0MCul6myO4njw9MyGJoOdqp8K0hqZn7k+WCm
+9k8JaoSOktwxggKmMIICogIBATCBkzCBhTELMAkGA1UEBhMCVVMxCzAJBgNVBAgM
+Ak5DMQ0wCwYDVQQHDARDYXJ5MR4wHAYDVQQKDBVSZWFsIFRpbWUgSW5ub3ZhdGlv
+bnMxFjAUBgNVBAMMDU5DIENlcnQgV29ybGQxIjAgBgkqhkiG9w0BCQEWE3Blcm1p
+c3Npb25zQHJ0aS5jb20CCQDGGDVp5GT9IDANBglghkgBZQMEAgEFAKCB5DAYBgkq
+hkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0xOTAzMDQwMzA0
+MTBaMC8GCSqGSIb3DQEJBDEiBCBioRcrdwapHKDcXIFQTVcjm1vx303hgCWoHzCg
+VVBdqDB5BgkqhkiG9w0BCQ8xbDBqMAsGCWCGSAFlAwQBKjALBglghkgBZQMEARYw
+CwYJYIZIAWUDBAECMAoGCCqGSIb3DQMHMA4GCCqGSIb3DQMCAgIAgDANBggqhkiG
+9w0DAgIBQDAHBgUrDgMCBzANBggqhkiG9w0DAgIBKDANBgkqhkiG9w0BAQEFAASC
+AQBAm4oSep8Ro6534v6Xhe6IYQBkleI+Q+4grAn6TIw6VQVb/dQS6h9UtKYUFYKK
+9xLUQxC0c+WjpCBiFRvNtyQHHg2jYjhWWlifMx/lH1eYQFriWJd7LlnYU7aHtWY3
+qR7R9T98AUgV5f9v6kk+/EVCiVWZ3xUMPDdX4juFxGMDI8uUkRm2mWORXjp6GqiK
+k+xsC+Ni7crchs4BxCCUQCRPuv+FgXDq7OGB+AlsnoqMB2EyUBudcCMEvlZgWNhP
+p2efiK9qqTO3oO7Hxtr2JVV4ZiWhndDqn6Z9tkpBRocu7qyql4j1+2RJeAGCswP1
+w9AGTBdYIgHIH3BtGfDjusM3
+
+------EB1D9A031D6C00153840C50092772CF3--
+

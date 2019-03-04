@@ -39,6 +39,7 @@ struct Block pixyBlocks[BLOCK_BUFFER_SIZE];
 
 static bool run_flag = true;
 static bool got_matched_subscriber = false;
+static bool got_matched_publisher = false;
 
 #define NUM_SIGS 7
 
@@ -228,6 +229,9 @@ void ShapeTypeExtendedListener::on_publication_matched(DDSDataWriter *writer, co
 	}
 
 	printf("\n");
+    printf("Subs: %d %d\n", status.current_count, status.current_count_change);
+
+#if 0
 	printf("Match status\n");
 	printf("----------------------------\n");
 	printf("current_count       : %ld\n", status.current_count);
@@ -236,6 +240,7 @@ void ShapeTypeExtendedListener::on_publication_matched(DDSDataWriter *writer, co
 	printf("total_count         : %ld\n", status.total_count);
 	printf("total_count_change  : %ld\n", status.total_count_change);
 	printf("\n");
+#endif
 
     if (status.current_count > 0)
     {
@@ -245,6 +250,59 @@ void ShapeTypeExtendedListener::on_publication_matched(DDSDataWriter *writer, co
         got_matched_subscriber = false;
     }
 }
+
+//-------------------------------------------------------------------
+// Listener class for data reader
+//-------------------------------------------------------------------
+class ServoControlListener : public DDSDataReaderListener
+{
+public:
+    virtual void on_requested_deadline_missed(
+        DDSDataReader* /*reader*/,
+        const DDS_RequestedDeadlineMissedStatus& /*status*/) {}
+
+    virtual void on_requested_incompatible_qos(
+        DDSDataReader* /*reader*/,
+        const DDS_RequestedIncompatibleQosStatus& /*status*/) {}
+
+    virtual void on_sample_rejected(
+        DDSDataReader* /*reader*/,
+        const DDS_SampleRejectedStatus& /*status*/) {}
+
+    virtual void on_liveliness_changed(
+        DDSDataReader* /*reader*/,
+        const DDS_LivelinessChangedStatus& /*status*/) {}
+
+    virtual void on_sample_lost(
+        DDSDataReader* /*reader*/,
+        const DDS_SampleLostStatus& /*status*/) {}
+
+    virtual void on_subscription_matched(
+        DDSDataReader* /*reader*/,
+        const DDS_SubscriptionMatchedStatus & /*status*/);
+
+    virtual void on_data_available(DDSDataReader* reader){}
+
+};
+
+void ServoControlListener::on_subscription_matched(DDSDataReader *reader, const DDS_SubscriptionMatchedStatus &status)
+{
+	ServoControlDataReader *servo_reader = NULL;
+	DDS_ReturnCode_t retcode;
+
+	servo_reader = ServoControlDataReader::narrow(reader);
+	if (NULL == servo_reader) return;
+
+	printf("\n");
+	printf("Pubs: %d %d\n", status.current_count, status.current_count_change);
+	if (status.current_count > 0)
+		got_matched_publisher = true;
+	else
+		got_matched_publisher = false;
+
+	return;
+}
+
 
 //-------------------------------------------------------------------
 // Do an orderly shutdown
@@ -426,8 +484,10 @@ extern "C" int publisher_main(int domainId, int sample_count)
         return -1;
     }
 
+    ServoControlListener *servo_listener = new ServoControlListener();
+
     // Create a data reader and narrow it to a type-specific one
-	reader = participant->create_datareader(servo_topic, DDS_DATAREADER_QOS_DEFAULT, NULL, DDS_STATUS_MASK_NONE);
+	reader = participant->create_datareader(servo_topic, DDS_DATAREADER_QOS_DEFAULT, servo_listener, DDS_STATUS_MASK_ALL);
 	ServoControlDataReader *servo_reader = ServoControlDataReader::narrow(reader);
 	if ((reader == NULL) || (servo_reader == NULL))
     {
@@ -507,13 +567,17 @@ extern "C" int publisher_main(int domainId, int sample_count)
 
         // Now check for inbound servo control data
 #ifdef TRACKING_ENABLED
-        retcode = servo_reader->take_next_sample(servo_control, servo_info);
-        if ((retcode == DDS_RETCODE_OK) && (servo_info.valid_data == RTI_TRUE))
+        if (got_matched_publisher)
         {
-            // Update the servo positions on the pixy
-            //pixy_rcs_set_position(0, servo_control.pan);
-            //pixy_rcs_set_position(1, servo_control.tilt);
-            pixy.setServos(servo_control.pan, servo_control.tilt);
+            retcode = servo_reader->take_next_sample(servo_control, servo_info);
+            if ((retcode == DDS_RETCODE_OK) && (servo_info.valid_data == RTI_TRUE))
+            {
+                // Update the servo positions on the pixy
+                //pixy_rcs_set_position(0, servo_control.pan);
+                //pixy_rcs_set_position(1, servo_control.tilt);
+                pixy.setServos(servo_control.pan, servo_control.tilt);
+                printf("P: %d T: %d    \r", servo_control.pan, servo_control.tilt);
+            }
         }
 #endif
 

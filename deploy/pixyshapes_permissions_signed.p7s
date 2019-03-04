@@ -1,0 +1,95 @@
+MIME-Version: 1.0
+Content-Type: multipart/signed; protocol="application/x-pkcs7-signature"; micalg="sha-256"; boundary="----3B68D14AD78151EF568086D9AEA29E1C"
+
+This is an S/MIME signed message
+
+------3B68D14AD78151EF568086D9AEA29E1C
+Content-Type: text/plain
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<dds xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="/Applications/rti_connext_dds-5.3.1/resource/schema/dds_security_permissions.xsd">
+
+    <permissions>
+
+        <grant name="PixyshapesPermissions">
+
+            <!-- TODO: Change the fields below to match those in your appname.cnf file.  Change the appname to your app's name -->
+            <subject_name>/C=US/ST=NC/O=Real Time Innovations/CN=pixyshapes/emailAddress=pixyshapes@rti.com</subject_name>
+
+            <validity>
+                <!-- Format is CCYY-MM-DDThh:mm:ss[Z|(+|-)hh:mm] in GMT -->
+                <not_before>2013-06-01T13:00:00</not_before>
+                <not_after>2033-06-01T13:00:00</not_after>
+            </validity>
+
+            <allow_rule>
+                <domains>
+                    <id_range>
+                        <min>50</min>
+                        <max>250</max>
+                    </id_range>
+                </domains>
+
+                <publish>
+                    <topics>
+                        <topic>Circle*</topic>
+                    </topics>
+                </publish>
+
+                <subscribe>
+                    <topics>
+                        <topic>pixy*</topic>
+                    </topics>
+                </subscribe>
+            </allow_rule>
+            <default>DENY</default>
+
+        </grant>
+    </permissions>
+</dds>
+
+------3B68D14AD78151EF568086D9AEA29E1C
+Content-Type: application/x-pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+
+MIIGbgYJKoZIhvcNAQcCoIIGXzCCBlsCAQExDzANBglghkgBZQMEAgEFADALBgkq
+hkiG9w0BBwGgggOMMIIDiDCCAnACCQDGGDVp5GT9IDANBgkqhkiG9w0BAQsFADCB
+hTELMAkGA1UEBhMCVVMxCzAJBgNVBAgMAk5DMQ0wCwYDVQQHDARDYXJ5MR4wHAYD
+VQQKDBVSZWFsIFRpbWUgSW5ub3ZhdGlvbnMxFjAUBgNVBAMMDU5DIENlcnQgV29y
+bGQxIjAgBgkqhkiG9w0BCQEWE3Blcm1pc3Npb25zQHJ0aS5jb20wHhcNMTkwMzAx
+MDAxNTUxWhcNMjkwMjI2MDAxNTUxWjCBhTELMAkGA1UEBhMCVVMxCzAJBgNVBAgM
+Ak5DMQ0wCwYDVQQHDARDYXJ5MR4wHAYDVQQKDBVSZWFsIFRpbWUgSW5ub3ZhdGlv
+bnMxFjAUBgNVBAMMDU5DIENlcnQgV29ybGQxIjAgBgkqhkiG9w0BCQEWE3Blcm1p
+c3Npb25zQHJ0aS5jb20wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDI
+t+ad2710306P+1Oxw0FWdOjrda6NrPyQVeKYnlOFKiJFHmnHyZmLxOlWUel7Tj3C
+45nuQlSHl4wocYDPig0Vp+Necpa7ug8HDN0o6m8vvNQyYqAhhpPgxG5Purh9jt6Y
+t+OlMixCz3VAmMb8+2Zu+TOhd9xtdNAcXxwgatIc7yAe64hs9tSLJ337iBuSJC0c
+R3jp1hrfm2ZWaO04BqKqH5ejH8pW1YZBvc4TMrmOky40oJ/yuSY07Nvc5GxE/E4m
+ysf8817kfJ2VuABGmSg2SvP7xgpNnjrTWvLCoEAmlJS+/pFyrvC0wECvzv4rfXkR
+P/PrrrnNB6PfDojfS/vPAgMBAAEwDQYJKoZIhvcNAQELBQADggEBAH5cUkyjZXOj
+JqPW5QQnVqGucdFx0uPWNnWNcj2s9OyWFRypXFMK4skN4GFWhpnFkOtrtc35uypZ
+S37daO9ocW4cnwyoTdo2uec/ylPvzdRV1V6Kw2GOJnMt9anc1x13aKFpzwKBg6Y5
+i6XMxRc0HXwvqX4dUosaNVpDlAyO1E/hxqL7/EZI7bljJtE8J/f83wHMDoMrFrVu
+DAGcNz/heIiVdB5NAqR/WIUabaIlUesvk2hHBWBH+lgVpI4HeNtWlX+uXN1+2W7A
+b6o2WFLhI0JdplnFqJpGh9jRhwUU0MCul6myO4njw9MyGJoOdqp8K0hqZn7k+WCm
+9k8JaoSOktwxggKmMIICogIBATCBkzCBhTELMAkGA1UEBhMCVVMxCzAJBgNVBAgM
+Ak5DMQ0wCwYDVQQHDARDYXJ5MR4wHAYDVQQKDBVSZWFsIFRpbWUgSW5ub3ZhdGlv
+bnMxFjAUBgNVBAMMDU5DIENlcnQgV29ybGQxIjAgBgkqhkiG9w0BCQEWE3Blcm1p
+c3Npb25zQHJ0aS5jb20CCQDGGDVp5GT9IDANBglghkgBZQMEAgEFAKCB5DAYBgkq
+hkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0xOTAzMDQwMjM5
+MTVaMC8GCSqGSIb3DQEJBDEiBCBnfl7Emhq5cFQffvmkkUIVzisYppaGv7Kh+Gbs
+g7z+4zB5BgkqhkiG9w0BCQ8xbDBqMAsGCWCGSAFlAwQBKjALBglghkgBZQMEARYw
+CwYJYIZIAWUDBAECMAoGCCqGSIb3DQMHMA4GCCqGSIb3DQMCAgIAgDANBggqhkiG
+9w0DAgIBQDAHBgUrDgMCBzANBggqhkiG9w0DAgIBKDANBgkqhkiG9w0BAQEFAASC
+AQCs1OYoN09nxsEVOQgJI+sqOnxBFY5x7OIG/6vJmqExndR0KPxN3G1DMa1oBrBa
+is80bFcuqfDlHTaEDx57+YsC+2Nd9i5uEbvpF/X+9MHRDgPRRfEgCt9hxFyZmhbw
+wVqEWyYE5b/mZeTWshIeVmWU+0d6J5H1g/brMM2fBLnp59qZFxHjCjkLO+bp0WAY
+tfUIYt6AgdfkSNZvhx998HiVINzfbvKGrJGpVWnjeUC2fkxDwtBj+OLKka8Y2av5
+A4UQ2WheIlU2FueP2N4B40mMUwdkrAmYt3Ct4TApSgE29Xyf2/cxnGapLPmD7W/f
+8VAOibbNl/zqSf6EzaLgcItB
+
+------3B68D14AD78151EF568086D9AEA29E1C--
+
