@@ -607,6 +607,9 @@ int main(int argc, char *argv[])
     // Handle control-C
     signal(SIGINT, handle_SIGINT);
 
+    // Show the domain we are publishing on
+    printf("DomainID: %d\n", domainId);
+
     // Initialize Pixycam2
     return_value = pixy.init();
     if (return_value < 0)

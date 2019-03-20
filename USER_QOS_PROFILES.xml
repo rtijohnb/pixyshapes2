@@ -3,12 +3,9 @@
      xsi:noNamespaceSchemaLocation="/Applications/rti_connext_dds-5.3.1/resource/schema/rti_dds_qos_profiles.xsd"
      version="5.3.1">
 
-    <qos_library name="PixyshapesSecureQoSLib">
+    <qos_library name="PixyshapesQoSLib">
 
-        <!--
-        <qos_profile name="ShapesPermissions" base_name="BuiltinQosLib::Generic.Security" is_default_qos="true">
-        -->
-        <qos_profile name="PixyshapesPermissions" base_name="BuiltinQosLib::Generic.Security" is_default_qos="true">
+        <qos_profile name="PixyShapesBase" base_name = "BuiltinQosLibExp::Generic.KeepLastReliable" is_default_qos="false">
 
             <participant_factory_qos>
                 <logging>
@@ -21,8 +18,114 @@
 
             <participant_qos>
                 <participant_name>
-                    <name>SecuredPixyshapes</name>
+                    <name>PixyshapesBase</name>
                     <role_name>Pixyshapes</role_name>
+                </participant_name>
+                <transport_builtin>
+                    <mask>UDPv4</mask>
+                </transport_builtin>
+                <!--
+                <discovery>
+                    <initial_peers>
+                        <element>builtin.udpv4://239.255.0.1</element>
+                    </initial_peers>
+                </discovery>
+                -->
+                <resource_limits>
+                    <type_code_max_serialized_length>16384</type_code_max_serialized_length>
+                    <type_object_max_serialized_length>16384</type_object_max_serialized_length>
+                </resource_limits>
+                <property>
+                    <value>
+                        <element>
+                            <name>dds.transport.UDPv4.builtin.recv_socket_buffer_size</name>
+                            <value>1048576</value>
+                        </element>
+                        <element>
+                            <name>dds.transport.UDPv4.builtin.parent.message_size_max</name>
+                            <value>65530</value>
+                        </element>
+                        <element>
+                            <name>dds.transport.UDPv4.builtin.send_socket_buffer_size</name>
+                            <value>65530</value>
+                        </element>
+                        <element>
+                            <name>dds.transport.UDPv4.builtin.disable_interface_tracking</name>
+                            <value>1</value>
+                        </element>
+                    </value>
+                </property>
+            </participant_qos>
+            <datawriter_qos>
+                <publication_name>
+                    <name>PixyCircleWriter</name>
+                </publication_name>
+                <lifespan>
+                	<duration>
+                		<sec>5</sec>
+                		<nanosec>0</nanosec>
+                	</duration>
+                </lifespan>
+        		<reliability>
+        			<kind>RELIABLE_RELIABILITY_QOS</kind>
+        			<max_blocking_time>
+        				<sec>1</sec>
+        				<nanosec>0</nanosec>
+        			</max_blocking_time>
+        		</reliability>
+        		<history>
+        			<kind>KEEP_LAST_HISTORY_QOS</kind>
+        			<depth>10</depth>
+        		</history>
+        		<resource_limits>
+        			<max_samples>100</max_samples>
+        		</resource_limits>
+        		<batch>
+        			<enable>true</enable>
+        			<max_samples>10</max_samples>
+        		</batch>
+            </datawriter_qos>
+
+            <datareader_qos>
+                <subscription_name>
+                    <name>PixyServoReader</name>
+                </subscription_name>
+                <history>
+                    <kind>KEEP_LAST_HISTORY_QOS</kind>
+                    <depth>6</depth>
+                </history>
+            </datareader_qos>
+        </qos_profile>
+
+        <qos_profile name="MulticastPixyShapes" base_name = "PixyshapesQoSLib::PixyShapesBase" is_default_qos="false">
+            <datareader_qos>
+                <subscription_name>
+                    <name>McastPixyServoReader</name>
+                </subscription_name>
+                <multicast>
+                    <value>
+                        <element>
+                            <receive_address>239.255.0.2</receive_address>
+                        </element>
+                    </value>
+                </multicast>
+            </datareader_qos>
+        </qos_profile>
+
+        <qos_profile name="SecurePixyshapes" base_name="BuiltinQosLib::Generic.Security" is_default_qos="false">
+            <participant_factory_qos>
+                <logging>
+                    <verbosity>ERROR</verbosity>
+                    <category>ALL</category>>
+                    <print_format>VERBOSE</print_format>
+                    <output_file>demo_log.txt</output_file>
+                </logging>
+            </participant_factory_qos>
+
+            <participant_qos>
+                <participant_name>
+                    <name>SecurePixyshapes</name>
+                    <role_name>SecurePixyshapes</role_name>
                 </participant_name>
                 <transport_builtin>
                     <mask>UDPv4</mask>
@@ -97,11 +200,9 @@
                 </property>
             </participant_qos>
             <datawriter_qos>
-<!--
                 <publication_name>
-                    <name>PixyshapeCircleWriter</name>
+                    <name>SecurePixyCircleWriter</name>
                 </publication_name>
--->
                 <lifespan>
                 	<duration>
                 		<sec>5</sec>
@@ -130,9 +231,20 @@
 
             <datareader_qos>
                 <subscription_name>
-                    <name>PixyshapeServoReader</name>
+                    <name>SecurePixyServoReader</name>
                 </subscription_name>
-<!--
+                <history>
+                    <kind>KEEP_LAST_HISTORY_QOS</kind>
+                    <depth>6</depth>
+                </history>
+            </datareader_qos>
+        </qos_profile>
+
+        <qos_profile name="MultiCastSecurePixyshapes" base_name="PixyshapesQoSLib::SecurePixyshapes" is_default_qos="false">
+            <datareader_qos>
+                <subscription_name>
+                    <name>MCastSecurePixyServoReader</name>
+                </subscription_name>
                 <multicast>
                     <value>
                         <element>
@@ -140,13 +252,17 @@
                         </element>
                     </value>
                 </multicast>
--->
-                <history>
-                    <kind>KEEP_LAST_HISTORY_QOS</kind>
-                    <depth>6</depth>
-                </history>
             </datareader_qos>
         </qos_profile>
+
+        <qos_profile name="PixyShapesActive" base_name="PixyshapesQoSLib::PixyShapesBase" is_default_qos="true"/>
+	<!--
+        <qos_profile name="PixyShapesActive" base_name="PixyshapesQoSLib::MulticastPixyShapes" is_default_qos="true"/>
+        <qos_profile name="PixyShapesActive" base_name="PixyshapesQoSLib::SecurePixyshapes" is_default_qos="true"/>
+	-->
+        <!--
+        <qos_profile name="PixyShapesActive" base_name="PixyshapesQoSLib::MultiCastSecurePixyshapes" is_default_qos="true"/>
+        -->
 
     </qos_library>
 </dds>
