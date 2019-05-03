@@ -21,7 +21,7 @@ PIXY_LIBS = -L$(PIXY_HOME)/build/libpixyusb2 -lpixy2 \
 
 # If undefined in the environment default NDDSHOME to install dir
 ifndef NDDSHOME
-NDDSHOME := "/Applications/rti_connext_dds-5.3.1"
+NDDSHOME := "/Applications/rti_connext_dds-6.0.0"
 endif
 
 #TARGET_ARCH = armv7aLinux3.12gcc4.9.3cortex-a9

@@ -23,8 +23,10 @@
 
 # If undefined in the environment default NDDSHOME to install dir
 ifndef NDDSHOME
-NDDSHOME := "/Applications/rti_connext_dds-5.2.4"
+NDDSHOME := "/Applications/rti_connext_dds-6.0.0"
 endif
+
+SOURCE_DIR = 
 
 TARGET_ARCH = armv6vfphLinux3.xgcc4.7.2
 
@@ -38,8 +40,6 @@ endif
 LINKER_FLAGS =
 SYSLIBS = -ldl -lnsl -lm -lpthread -lrt
 DEFINES = -fpic -DRTI_UNIX -DRTI_LINUX -march=armv6 -mfpu=vfp -mfloat-abi=hard -mlong-calls 
-
-
 
 INCLUDES = -I. -I$(NDDSHOME)/include -I$(NDDSHOME)/include/ndds 
        
