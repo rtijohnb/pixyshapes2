@@ -44,7 +44,7 @@ DEFINES = -fpic -DRTI_UNIX -DRTI_LINUX -march=armv6 -mfpu=vfp -mfloat-abi=hard -
 INCLUDES = -I. -I$(NDDSHOME)/include -I$(NDDSHOME)/include/ndds 
        
 LIBS = -L$(NDDSHOME)/lib/$(TARGET_ARCH) \
-        -lnddscppz -lnddscz -lnddscorez $(SYSLIBS)
+        -lnddscpp -lnddsc -lnddscore $(SYSLIBS)
 
 CDRSOURCES    = ShapeType.idl
 COMMONSOURCES = ShapeTypeSupport.cxx ShapeTypePlugin.cxx ShapeType.cxx 

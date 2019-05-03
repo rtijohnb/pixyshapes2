@@ -32,7 +32,9 @@
                 </discovery>
                 -->
                 <resource_limits>
+		    <!--
                     <type_code_max_serialized_length>16384</type_code_max_serialized_length>
+                    -->
                     <type_object_max_serialized_length>16384</type_object_max_serialized_length>
                 </resource_limits>
                 <property>
