@@ -3,10 +3,11 @@
 /*
 WARNING: THIS FILE IS AUTO-GENERATED. DO NOT MODIFY.
 
-This file was generated from ShapeType.idl using "rtiddsgen".
-The rtiddsgen tool is part of the RTI Connext distribution.
+This file was generated from ShapeType.idl 
+using RTI Code Generator (rtiddsgen) version 3.1.1.2.
+The rtiddsgen tool is part of the RTI Connext DDS distribution.
 For more information, type 'rtiddsgen -help' at a command shell
-or consult the RTI Connext manual.
+or consult the Code Generator User's Manual.
 */
 
 #ifndef NDDS_STANDALONE_TYPE
@@ -43,7 +44,7 @@ or consult the RTI Connext manual.
 const char *ShapeFillKindTYPENAME = "ShapeFillKind";
 
 #ifndef NDDS_STANDALONE_TYPE
-DDS_TypeCode* ShapeFillKind_get_typecode()
+DDS_TypeCode * ShapeFillKind_get_typecode(void)
 {
     static RTIBool is_initialized = RTI_FALSE;
 
@@ -211,9 +212,9 @@ RTIXCdrSampleAccessInfo *ShapeFillKind_get_sample_access_info()
     {
         size_t candidateTypeSize = sizeof(ShapeFillKind);
 
-        if (candidateTypeSize > RTIXCdrUnsignedLong_MAX) {
+        if (candidateTypeSize > RTIXCdrLong_MAX) {
             ShapeFillKind_g_sampleAccessInfo.typeSize[0] =
-            RTIXCdrUnsignedLong_MAX;
+            RTIXCdrLong_MAX;
         } else {
             ShapeFillKind_g_sampleAccessInfo.typeSize[0] =
             (RTIXCdrUnsignedLong) candidateTypeSize;
@@ -411,11 +412,11 @@ RTIBool ShapeFillKind_copy(
 const char *ShapeTypeTYPENAME = "ShapeType";
 
 #ifndef NDDS_STANDALONE_TYPE
-DDS_TypeCode* ShapeType_get_typecode()
+DDS_TypeCode * ShapeType_get_typecode(void)
 {
     static RTIBool is_initialized = RTI_FALSE;
 
-    static DDS_TypeCode ShapeType_g_tc_color_string = DDS_INITIALIZE_STRING_TYPECODE((128));
+    static DDS_TypeCode ShapeType_g_tc_color_string = DDS_INITIALIZE_STRING_TYPECODE((128L));
 
     static DDS_TypeCode_Member ShapeType_g_tc_members[4]=
     {
@@ -622,9 +623,9 @@ RTIXCdrSampleAccessInfo *ShapeType_get_sample_access_info()
     {
         size_t candidateTypeSize = sizeof(ShapeType);
 
-        if (candidateTypeSize > RTIXCdrUnsignedLong_MAX) {
+        if (candidateTypeSize > RTIXCdrLong_MAX) {
             ShapeType_g_sampleAccessInfo.typeSize[0] =
-            RTIXCdrUnsignedLong_MAX;
+            RTIXCdrLong_MAX;
         } else {
             ShapeType_g_sampleAccessInfo.typeSize[0] =
             (RTIXCdrUnsignedLong) candidateTypeSize;
@@ -703,11 +704,11 @@ RTIBool ShapeType_initialize_w_params(
     }
 
     if (allocParams->allocate_memory) {
-        sample->color = DDS_String_alloc((128));
+        sample->color = DDS_String_alloc((128L));
         RTICdrType_copyStringEx(
             &sample->color,
             "",
-            (128),
+            (128L),
             RTI_FALSE);
         if (sample->color == NULL) {
             return RTI_FALSE;
@@ -717,7 +718,7 @@ RTIBool ShapeType_initialize_w_params(
             RTICdrType_copyStringEx(
                 &sample->color,
                 "",
-                (128),
+                (128L),
                 RTI_FALSE);
             if (sample->color == NULL) {
                 return RTI_FALSE;
@@ -815,7 +816,7 @@ RTIBool ShapeType_copy(
 
         if (!RTICdrType_copyStringEx (
             &dst->color, src->color, 
-            (128) + 1, RTI_FALSE)){
+            (128L) + 1, RTI_FALSE)){
             return RTI_FALSE;
         }
         if (!RTICdrType_copyLong (
@@ -873,7 +874,7 @@ RTIBool ShapeType_copy(
 const char *ShapeTypeExtendedTYPENAME = "ShapeTypeExtended";
 
 #ifndef NDDS_STANDALONE_TYPE
-DDS_TypeCode* ShapeTypeExtended_get_typecode()
+DDS_TypeCode * ShapeTypeExtended_get_typecode(void)
 {
     static RTIBool is_initialized = RTI_FALSE;
 
@@ -1026,9 +1027,9 @@ RTIXCdrSampleAccessInfo *ShapeTypeExtended_get_sample_access_info()
     {
         size_t candidateTypeSize = sizeof(ShapeTypeExtended);
 
-        if (candidateTypeSize > RTIXCdrUnsignedLong_MAX) {
+        if (candidateTypeSize > RTIXCdrLong_MAX) {
             ShapeTypeExtended_g_sampleAccessInfo.typeSize[0] =
-            RTIXCdrUnsignedLong_MAX;
+            RTIXCdrLong_MAX;
         } else {
             ShapeTypeExtended_g_sampleAccessInfo.typeSize[0] =
             (RTIXCdrUnsignedLong) candidateTypeSize;
@@ -1110,7 +1111,6 @@ RTIBool ShapeTypeExtended_initialize_w_params(
     }
 
     sample->fillKind = SOLID_FILL;
-
     sample->angle = 0.0f;
 
     return RTI_TRUE;
@@ -1182,7 +1182,6 @@ void ShapeTypeExtended_finalize_optional_members(
     deallocParamsTmp.delete_pointers = (DDS_Boolean)deletePointers;
     deallocParamsTmp.delete_optional_members = DDS_BOOLEAN_TRUE;
 
-    ShapeFillKind_finalize_optional_members(&sample->fillKind, deallocParams->delete_pointers);
 }
 
 RTIBool ShapeTypeExtended_copy(
@@ -1250,11 +1249,11 @@ RTIBool ShapeTypeExtended_copy(
 const char *PixyCamConfigTYPENAME = "PixyCamConfig";
 
 #ifndef NDDS_STANDALONE_TYPE
-DDS_TypeCode* PixyCamConfig_get_typecode()
+DDS_TypeCode * PixyCamConfig_get_typecode(void)
 {
     static RTIBool is_initialized = RTI_FALSE;
 
-    static DDS_TypeCode PixyCamConfig_g_tc_profileEnabled_array =DDS_INITIALIZE_ARRAY_TYPECODE(1,7, NULL,NULL);
+    static DDS_TypeCode PixyCamConfig_g_tc_profileEnabled_array =DDS_INITIALIZE_ARRAY_TYPECODE(1,7L, NULL,NULL);
 
     static DDS_TypeCode_Member PixyCamConfig_g_tc_members[1]=
     {
@@ -1373,9 +1372,9 @@ RTIXCdrSampleAccessInfo *PixyCamConfig_get_sample_access_info()
     {
         size_t candidateTypeSize = sizeof(PixyCamConfig);
 
-        if (candidateTypeSize > RTIXCdrUnsignedLong_MAX) {
+        if (candidateTypeSize > RTIXCdrLong_MAX) {
             PixyCamConfig_g_sampleAccessInfo.typeSize[0] =
-            RTIXCdrUnsignedLong_MAX;
+            RTIXCdrLong_MAX;
         } else {
             PixyCamConfig_g_sampleAccessInfo.typeSize[0] =
             (RTIXCdrUnsignedLong) candidateTypeSize;
@@ -1454,7 +1453,7 @@ RTIBool PixyCamConfig_initialize_w_params(
     }
 
     if (!RTICdrType_initArray(
-        sample->profileEnabled, (7), RTI_CDR_BOOLEAN_SIZE)) {
+        sample->profileEnabled, (7L), RTI_CDR_BOOLEAN_SIZE)) {
         return RTI_FALSE;
     }
     return RTI_TRUE;
@@ -1534,7 +1533,7 @@ RTIBool PixyCamConfig_copy(
         }
 
         if (!RTICdrType_copyArray(
-            dst->profileEnabled ,src->profileEnabled,(7), RTI_CDR_BOOLEAN_SIZE)) {
+            dst->profileEnabled ,src->profileEnabled,(7L), RTI_CDR_BOOLEAN_SIZE)) {
             return RTI_FALSE;
         }
 

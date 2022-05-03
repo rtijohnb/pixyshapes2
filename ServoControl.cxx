@@ -3,10 +3,11 @@
 /*
 WARNING: THIS FILE IS AUTO-GENERATED. DO NOT MODIFY.
 
-This file was generated from ServoControl.idl using "rtiddsgen".
-The rtiddsgen tool is part of the RTI Connext distribution.
+This file was generated from ServoControl.idl 
+using RTI Code Generator (rtiddsgen) version 3.1.1.2.
+The rtiddsgen tool is part of the RTI Connext DDS distribution.
 For more information, type 'rtiddsgen -help' at a command shell
-or consult the RTI Connext manual.
+or consult the Code Generator User's Manual.
 */
 
 #ifndef NDDS_STANDALONE_TYPE
@@ -43,7 +44,7 @@ or consult the RTI Connext manual.
 const char *ServoControlTYPENAME = "ServoControl";
 
 #ifndef NDDS_STANDALONE_TYPE
-DDS_TypeCode* ServoControl_get_typecode()
+DDS_TypeCode * ServoControl_get_typecode(void)
 {
     static RTIBool is_initialized = RTI_FALSE;
 
@@ -227,9 +228,9 @@ RTIXCdrSampleAccessInfo *ServoControl_get_sample_access_info()
     {
         size_t candidateTypeSize = sizeof(ServoControl);
 
-        if (candidateTypeSize > RTIXCdrUnsignedLong_MAX) {
+        if (candidateTypeSize > RTIXCdrLong_MAX) {
             ServoControl_g_sampleAccessInfo.typeSize[0] =
-            RTIXCdrUnsignedLong_MAX;
+            RTIXCdrLong_MAX;
         } else {
             ServoControl_g_sampleAccessInfo.typeSize[0] =
             (RTIXCdrUnsignedLong) candidateTypeSize;

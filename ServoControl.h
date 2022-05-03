@@ -3,14 +3,15 @@
 /*
 WARNING: THIS FILE IS AUTO-GENERATED. DO NOT MODIFY.
 
-This file was generated from ServoControl.idl using "rtiddsgen".
-The rtiddsgen tool is part of the RTI Connext distribution.
+This file was generated from ServoControl.idl
+using RTI Code Generator (rtiddsgen) version 3.1.1.2.
+The rtiddsgen tool is part of the RTI Connext DDS distribution.
 For more information, type 'rtiddsgen -help' at a command shell
-or consult the RTI Connext manual.
+or consult the Code Generator User's Manual.
 */
 
-#ifndef ServoControl_1848045221_h
-#define ServoControl_1848045221_h
+#ifndef ServoControl_1848045218_h
+#define ServoControl_1848045218_h
 
 #ifndef NDDS_STANDALONE_TYPE
 #ifndef ndds_cpp_h
@@ -56,7 +57,7 @@ class ServoControl
 #endif
 
 #ifndef NDDS_STANDALONE_TYPE
-NDDSUSERDllExport DDS_TypeCode* ServoControl_get_typecode(void); /* Type code */
+NDDSUSERDllExport DDS_TypeCode * ServoControl_get_typecode(void); /* Type code */
 NDDSUSERDllExport RTIXCdrTypePlugin *ServoControl_get_type_plugin_info(void);
 NDDSUSERDllExport RTIXCdrSampleAccessInfo *ServoControl_get_sample_access_info(void);
 NDDSUSERDllExport RTIXCdrSampleAccessInfo *ServoControl_get_sample_seq_access_info(void);

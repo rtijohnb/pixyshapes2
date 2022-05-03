@@ -2,14 +2,15 @@
 /*
 WARNING: THIS FILE IS AUTO-GENERATED. DO NOT MODIFY.
 
-This file was generated from ShapeType.idl using "rtiddsgen".
-The rtiddsgen tool is part of the RTI Connext distribution.
+This file was generated from ShapeType.idl
+using RTI Code Generator (rtiddsgen) version 3.1.1.2.
+The rtiddsgen tool is part of the RTI Connext DDS distribution.
 For more information, type 'rtiddsgen -help' at a command shell
-or consult the RTI Connext manual.
+or consult the Code Generator User's Manual.
 */
 
-#ifndef ShapeTypeSupport_434673938_h
-#define ShapeTypeSupport_434673938_h
+#ifndef ShapeTypeSupport_434673848_h
+#define ShapeTypeSupport_434673848_h
 
 /* Uses */
 #include "ShapeType.h"
@@ -132,5 +133,5 @@ DDS_DATAREADER_W_DATA_CONSISTENCY_CHECK(PixyCamConfigDataReader, PixyCamConfigSe
 #define NDDSUSERDllExport
 #endif
 
-#endif  /* ShapeTypeSupport_434673938_h */
+#endif  /* ShapeTypeSupport_434673848_h */
 

@@ -3,14 +3,15 @@
 /*
 WARNING: THIS FILE IS AUTO-GENERATED. DO NOT MODIFY.
 
-This file was generated from ShapeType.idl using "rtiddsgen".
-The rtiddsgen tool is part of the RTI Connext distribution.
+This file was generated from ShapeType.idl
+using RTI Code Generator (rtiddsgen) version 3.1.1.2.
+The rtiddsgen tool is part of the RTI Connext DDS distribution.
 For more information, type 'rtiddsgen -help' at a command shell
-or consult the RTI Connext manual.
+or consult the Code Generator User's Manual.
 */
 
-#ifndef ShapeTypePlugin_434673938_h
-#define ShapeTypePlugin_434673938_h
+#ifndef ShapeTypePlugin_434673848_h
+#define ShapeTypePlugin_434673848_h
 
 #include "ShapeType.h"
 
@@ -27,7 +28,7 @@ struct RTICdrStream;
 #define NDDSUSERDllExport __declspec(dllexport)
 #endif
 
-extern "C" {
+extern "C"{
 
     /* ----------------------------------------------------------------------------
     (De)Serialize functions:
@@ -200,16 +201,6 @@ extern "C" {
         const ShapeType *sample,
         DDS_DataRepresentationId_t representation);
 
-    NDDSUSERDllExport extern RTIBool 
-    ShapeTypePlugin_deserialize(
-        PRESTypePluginEndpointData endpoint_data,
-        ShapeType **sample, 
-        RTIBool * drop_sample,
-        struct RTICdrStream *stream,
-        RTIBool deserialize_encapsulation,
-        RTIBool deserialize_sample, 
-        void *endpoint_plugin_qos);
-
     NDDSUSERDllExport extern RTIBool
     ShapeTypePlugin_deserialize_from_cdr_buffer(
         ShapeType *sample,
@@ -273,13 +264,6 @@ extern "C" {
         const ShapeTypeKeyHolder *key);
 
     NDDSUSERDllExport extern RTIBool 
-    ShapeTypePlugin_instance_to_keyhash(
-        PRESTypePluginEndpointData endpoint_data,
-        DDS_KeyHash_t *keyhash,
-        const ShapeType *instance,
-        RTIEncapsulationId encapsulationId);
-
-    NDDSUSERDllExport extern RTIBool 
     ShapeTypePlugin_serialized_sample_to_keyhash(
         PRESTypePluginEndpointData endpoint_data,
         struct RTICdrStream *stream, 
@@ -288,7 +272,7 @@ extern "C" {
         void *endpoint_plugin_qos); 
 
     NDDSUSERDllExport extern
-    struct RTIXCdrInterpreterPrograms *ShapeTypePlugin_get_programs();
+    struct RTIXCdrInterpreterPrograms * ShapeTypePlugin_get_programs(void);
 
     /* Plugin Functions */
     NDDSUSERDllExport extern struct PRESTypePlugin*
@@ -432,16 +416,6 @@ extern "C" {
         const ShapeTypeExtended *sample,
         DDS_DataRepresentationId_t representation);
 
-    NDDSUSERDllExport extern RTIBool 
-    ShapeTypeExtendedPlugin_deserialize(
-        PRESTypePluginEndpointData endpoint_data,
-        ShapeTypeExtended **sample, 
-        RTIBool * drop_sample,
-        struct RTICdrStream *stream,
-        RTIBool deserialize_encapsulation,
-        RTIBool deserialize_sample, 
-        void *endpoint_plugin_qos);
-
     NDDSUSERDllExport extern RTIBool
     ShapeTypeExtendedPlugin_deserialize_from_cdr_buffer(
         ShapeTypeExtended *sample,
@@ -505,13 +479,6 @@ extern "C" {
         const ShapeTypeExtendedKeyHolder *key);
 
     NDDSUSERDllExport extern RTIBool 
-    ShapeTypeExtendedPlugin_instance_to_keyhash(
-        PRESTypePluginEndpointData endpoint_data,
-        DDS_KeyHash_t *keyhash,
-        const ShapeTypeExtended *instance,
-        RTIEncapsulationId encapsulationId);
-
-    NDDSUSERDllExport extern RTIBool 
     ShapeTypeExtendedPlugin_serialized_sample_to_keyhash(
         PRESTypePluginEndpointData endpoint_data,
         struct RTICdrStream *stream, 
@@ -520,7 +487,7 @@ extern "C" {
         void *endpoint_plugin_qos); 
 
     NDDSUSERDllExport extern
-    struct RTIXCdrInterpreterPrograms *ShapeTypeExtendedPlugin_get_programs();
+    struct RTIXCdrInterpreterPrograms * ShapeTypeExtendedPlugin_get_programs(void);
 
     /* Plugin Functions */
     NDDSUSERDllExport extern struct PRESTypePlugin*
@@ -631,16 +598,6 @@ extern "C" {
         const PixyCamConfig *sample,
         DDS_DataRepresentationId_t representation);
 
-    NDDSUSERDllExport extern RTIBool 
-    PixyCamConfigPlugin_deserialize(
-        PRESTypePluginEndpointData endpoint_data,
-        PixyCamConfig **sample, 
-        RTIBool * drop_sample,
-        struct RTICdrStream *stream,
-        RTIBool deserialize_encapsulation,
-        RTIBool deserialize_sample, 
-        void *endpoint_plugin_qos);
-
     NDDSUSERDllExport extern RTIBool
     PixyCamConfigPlugin_deserialize_from_cdr_buffer(
         PixyCamConfig *sample,
@@ -692,7 +649,7 @@ extern "C" {
         void *endpoint_plugin_qos);
 
     NDDSUSERDllExport extern
-    struct RTIXCdrInterpreterPrograms *PixyCamConfigPlugin_get_programs();
+    struct RTIXCdrInterpreterPrograms * PixyCamConfigPlugin_get_programs(void);
 
     /* Plugin Functions */
     NDDSUSERDllExport extern struct PRESTypePlugin*
@@ -710,5 +667,5 @@ extern "C" {
 #define NDDSUSERDllExport
 #endif
 
-#endif /* ShapeTypePlugin_434673938_h */
+#endif /* ShapeTypePlugin_434673848_h */
 

@@ -13,23 +13,26 @@ enum ShapeFillKind {
     VERTICAL_HATCH_FILL
 };
 
+@appendable
 struct ShapeType
 {
-    string<128> color; //@key
+    @key string<128> color; 
     long x;
     long y;
     long shapesize;
-};//@Extensibility EXTENSIBLE_EXTENSIBILITY
+};
 
+@appendable
 struct ShapeTypeExtended : ShapeType {
     ShapeFillKind fillKind;
     float angle;
-};//@Extensibility EXTENSIBLE_EXTENSIBILITY
+};
 
 const string DEFAULT_CAM_CONFIG_TOPIC_NAME = "pixy/camconfig";
 
+@appendable
 struct PixyCamConfig
 {
     // Which profiles are enabled
     boolean profileEnabled[7];
-};////@Extensibility EXTENSIBLE_EXTENSIBILITY
+};

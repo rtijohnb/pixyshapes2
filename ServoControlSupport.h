@@ -2,14 +2,15 @@
 /*
 WARNING: THIS FILE IS AUTO-GENERATED. DO NOT MODIFY.
 
-This file was generated from ServoControl.idl using "rtiddsgen".
-The rtiddsgen tool is part of the RTI Connext distribution.
+This file was generated from ServoControl.idl
+using RTI Code Generator (rtiddsgen) version 3.1.1.2.
+The rtiddsgen tool is part of the RTI Connext DDS distribution.
 For more information, type 'rtiddsgen -help' at a command shell
-or consult the RTI Connext manual.
+or consult the Code Generator User's Manual.
 */
 
-#ifndef ServoControlSupport_1848045221_h
-#define ServoControlSupport_1848045221_h
+#ifndef ServoControlSupport_1848045218_h
+#define ServoControlSupport_1848045218_h
 
 /* Uses */
 #include "ServoControl.h"
@@ -62,5 +63,5 @@ DDS_DATAREADER_W_DATA_CONSISTENCY_CHECK(ServoControlDataReader, ServoControlSeq,
 #define NDDSUSERDllExport
 #endif
 
-#endif  /* ServoControlSupport_1848045221_h */
+#endif  /* ServoControlSupport_1848045218_h */
 

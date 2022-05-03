@@ -2,10 +2,11 @@
 /*
 WARNING: THIS FILE IS AUTO-GENERATED. DO NOT MODIFY.
 
-This file was generated from ServoControl.idl using "rtiddsgen".
-The rtiddsgen tool is part of the RTI Connext distribution.
+This file was generated from ServoControl.idl
+using RTI Code Generator (rtiddsgen) version 3.1.1.2.
+The rtiddsgen tool is part of the RTI Connext DDS distribution.
 For more information, type 'rtiddsgen -help' at a command shell
-or consult the RTI Connext manual.
+or consult the Code Generator User's Manual.
 */
 
 #include <string.h>
@@ -74,12 +75,25 @@ ServoControlPluginSupport_create_data_w_params(
 {
     ServoControl *sample = NULL;
 
-    sample = new (std::nothrow) ServoControl ;
+    if (alloc_params == NULL) {
+        return NULL;
+    }
+
+    sample = new (std::nothrow) ServoControl();
     if (sample == NULL) {
         return NULL;
     }
 
     if (!ServoControl_initialize_w_params(sample,alloc_params)) {
+        struct DDS_TypeDeallocationParams_t deallocParams =
+        DDS_TYPE_DEALLOCATION_PARAMS_DEFAULT;
+        deallocParams.delete_pointers = alloc_params->allocate_pointers;
+        deallocParams.delete_optional_members = alloc_params->allocate_pointers;
+        /* Coverity reports a possible uninit_use_in_call that will happen if the
+        allocation fails. But if the allocation fails then sample == null and
+        the method will return before reach this point.*/
+        /* coverity[uninit_use_in_call : FALSE] */
+        ServoControl_finalize_w_params(sample, &deallocParams);
         delete  sample;
         sample=NULL;
     }
@@ -91,13 +105,18 @@ ServoControlPluginSupport_create_data_ex(RTIBool allocate_pointers)
 {
     ServoControl *sample = NULL;
 
-    sample = new (std::nothrow) ServoControl ;
+    sample = new (std::nothrow) ServoControl();
 
     if(sample == NULL) {
         return NULL;
     }
 
     if (!ServoControl_initialize_ex(sample,allocate_pointers, RTI_TRUE)) {
+        /* Coverity reports a possible uninit_use_in_call that will happen if the
+        new fails. But if new fails then sample == null and the method will
+        return before reach this point. */
+        /* coverity[uninit_use_in_call : FALSE] */
+        ServoControl_finalize_ex(sample, RTI_TRUE);
         delete  sample;
         sample=NULL;
     }
@@ -118,7 +137,6 @@ ServoControlPluginSupport_destroy_data_w_params(
     ServoControl_finalize_w_params(sample,dealloc_params);
 
     delete  sample;
-    sample=NULL;
 }
 
 void 
@@ -127,7 +145,6 @@ ServoControlPluginSupport_destroy_data_ex(
     ServoControl_finalize_ex(sample,deallocate_pointers);
 
     delete  sample;
-    sample=NULL;
 }
 
 void 
@@ -156,13 +173,13 @@ ServoControlPluginSupport_print_data(
     RTICdrType_printIndent(indent_level);
 
     if (desc != NULL) {
-        RTILog_debug("%s:\n", desc);
+        RTILogParamString_printPlain("%s:\n", desc);
     } else {
-        RTILog_debug("\n");
+        RTILogParamString_printPlain("\n");
     }
 
     if (sample == NULL) {
-        RTILog_debug("NULL\n");
+        RTILogParamString_printPlain("NULL\n");
         return;
     }
 
@@ -208,6 +225,7 @@ ServoControlPlugin_on_participant_attached(
     programProperty.resolveAlias = RTI_XCDR_TRUE;
     programProperty.inlineStruct = RTI_XCDR_TRUE;
     programProperty.optimizeEnum = RTI_XCDR_TRUE;
+    programProperty.unboundedSize = RTIXCdrLong_MAX;
 
     programs = DDS_TypeCodeFactory_assert_programs_in_global_list(
         DDS_TypeCodeFactory_get_instance(),
@@ -344,7 +362,7 @@ ServoControlPlugin_serialize_to_cdr_buffer_ex(
     struct PRESTypePluginDefaultEndpointData epd;
     RTIBool result;
     struct PRESTypePluginDefaultParticipantData pd;
-    struct RTIXCdrTypePluginProgramContext defaultProgramConext =
+    struct RTIXCdrTypePluginProgramContext defaultProgramContext =
     RTIXCdrTypePluginProgramContext_INTIALIZER;
     struct PRESTypePlugin plugin;
 
@@ -353,7 +371,7 @@ ServoControlPlugin_serialize_to_cdr_buffer_ex(
     }
 
     RTIOsapiMemory_zero(&epd, sizeof(struct PRESTypePluginDefaultEndpointData));
-    epd.programContext = defaultProgramConext;  
+    epd.programContext = defaultProgramContext;
     epd._participantData = &pd;
     epd.typePlugin = &plugin;
     epd.programContext.endpointPluginData = &epd;
@@ -431,12 +449,12 @@ ServoControlPlugin_deserialize_from_cdr_buffer(
 {
     struct RTICdrStream stream;
     struct PRESTypePluginDefaultEndpointData epd;
-    struct RTIXCdrTypePluginProgramContext defaultProgramConext =
+    struct RTIXCdrTypePluginProgramContext defaultProgramContext =
     RTIXCdrTypePluginProgramContext_INTIALIZER;
     struct PRESTypePluginDefaultParticipantData pd;
     struct PRESTypePlugin plugin;
 
-    epd.programContext = defaultProgramConext;  
+    epd.programContext = defaultProgramContext;
     epd._participantData = &pd;
     epd.typePlugin = &plugin;
     epd.programContext.endpointPluginData = &epd;
@@ -464,7 +482,7 @@ ServoControlPlugin_deserialize_from_cdr_buffer(
 DDS_ReturnCode_t
 ServoControlPlugin_data_to_string(
     const ServoControl *sample,
-    char *str,
+    char *_str,
     DDS_UnsignedLong *str_size, 
     const struct DDS_PrintFormatProperty *property)
 {
@@ -530,7 +548,7 @@ ServoControlPlugin_data_to_string(
 
     retCode = DDS_DynamicDataFormatter_to_string_w_format(
         data, 
-        str,
+        _str,
         str_size, 
         &printFormat);
     if (retCode != DDS_RETCODE_OK) {
@@ -637,9 +655,9 @@ ServoControlPlugin_get_serialized_key_max_size_for_keyhash(
     return size;
 }
 
-struct RTIXCdrInterpreterPrograms *ServoControlPlugin_get_programs()
+struct RTIXCdrInterpreterPrograms * ServoControlPlugin_get_programs(void)
 {
-    return rti::xcdr::get_cdr_serialization_programs<
+    return ::rti::xcdr::get_cdr_serialization_programs<
     ServoControl, 
     true, true, true>();
 }
